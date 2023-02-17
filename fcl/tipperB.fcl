@@ -1,0 +1,77 @@
+
+
+FUNCTION_BLOCK tipper	
+
+VAR_INPUT				
+	alga : REAL;
+	algb : REAL;
+	algc : REAL;
+	algd : REAL;
+END_VAR
+
+VAR_OUTPUT				
+	score : REAL;
+END_VAR
+
+FUZZIFY alga			
+	TERM poor := (0, 1) (4aa4, 1) (4bb4, 0) ;
+	TERM good := (4cc4, 0) (4dd4,1) (4ee4,1) (4ff4,0);
+	TERM excellent := (4gg4, 0) (4hh4, 1) (1, 1);
+END_FUZZIFY
+
+FUZZIFY algb			
+	TERM poor := (0, 1) (4aa4, 1) (4bb4, 0) ;
+	TERM good := (4cc4, 0) (4dd4,1) (4ee4,1) (4ff4,0);
+	TERM excellent := (4gg4, 0) (4hh4, 1) (1, 1);
+END_FUZZIFY
+
+FUZZIFY algc			
+	TERM poor := (0, 1) (4aa4, 1) (4bb4, 0) ;
+	TERM good := (4cc4, 0) (4dd4,1) (4ee4,1) (4ff4,0);
+	TERM excellent := (4gg4, 0) (4hh4, 1) (1, 1);
+END_FUZZIFY
+
+FUZZIFY algd			
+	TERM poor := (0, 1) (4aa4, 1) (4bb4, 0) ;
+	TERM good := (4cc4, 0) (4dd4,1) (4ee4,1) (4ff4,0);
+	TERM excellent := (4gg4, 0) (4hh4, 1) (1, 1);
+END_FUZZIFY
+
+DEFUZZIFY score			
+	TERM poor := (0, 1) (4aa4, 1) (4bb4, 0) ;
+	TERM good := (4cc4, 0) (4dd4,1) (4ee4,1) (4ff4,0);
+	TERM excellent := (4gg4, 0) (4hh4, 1) (1, 1);
+	METHOD : mmm;		
+	DEFAULT := 0;		
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;			
+	ACT : MIN;			
+	ACCU : MAX;			
+
+	RULE 1 : IF alga IS aaa AND algb IS 2aa2 THEN score IS 3aa3;
+	RULE 2 : IF alga IS bbb AND algc IS 2bb2 THEN score IS 3bb3;
+	RULE 3 : IF alga IS ccc AND algd IS 2cc2 THEN score IS 3cc3;
+	RULE 4 : IF algb IS ddd AND algc IS 2dd2 THEN score IS 3dd3;
+	RULE 5 : IF algb IS eee AND algd IS 2ee2 THEN score IS 3ee3;
+	RULE 6 : IF algc IS fff AND algd IS 2ff2 THEN score IS 3ff3;
+	
+	RULE 7 : IF alga IS ggg AND algb IS 2gg2 THEN score IS 3gg3;
+	RULE 8 : IF alga IS hhh AND algc IS 2hh2 THEN score IS 3hh3;
+	RULE 9 : IF alga IS iii AND algd IS 2ii2 THEN score IS 3ii3;
+	RULE 10 : IF algb IS jjj AND algc IS 2jj2 THEN score IS 3jj3;
+	RULE 11 : IF algb IS kkk AND algd IS 2kk2 THEN score IS 3kk3;
+	RULE 12 : IF algc IS lll AND algd IS 2ll2 THEN score IS 3ll3;
+	
+	RULE 13 : IF alga IS nnn AND algb IS 2nn2 THEN score IS 3nn3;
+	RULE 14 : IF alga IS ooo AND algc IS 2oo2 THEN score IS 3oo3;
+	RULE 15 : IF alga IS ppp AND algd IS 2pp2 THEN score IS 3pp3;
+	RULE 16 : IF algb IS qqq AND algc IS 2qq2 THEN score IS 3qq3;
+	RULE 17 : IF algb IS rrr AND algd IS 2rr2 THEN score IS 3rr3;
+	RULE 18 : IF alga IS 2mm2 THEN score IS 3mm3;
+	
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-14">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Jorge/lib/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Jorge/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Jorge/lib/commons-math3-3.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Jorge/lib/JMetal-4.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Jorge/lib/log4j-over-slf4j.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Jorge/lib/MOEAFramework-2.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Jorge/lib/rsyntaxtextarea.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Jorge/lib/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Jorge/lib/jFuzzyLogic.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Proyectos/lgp/commons-math3-3.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Proyectos/lgp/java-data-frame-1.0.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/martinez/Desktop/Proyectos/lgp/java-genetic-programming-1.0.14.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
