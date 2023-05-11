@@ -59,7 +59,7 @@ public static class dke extends AbstractProblem {
 			
 			List<Observation> data = testingData = generate("datasets/mc.txt");
 			CollectionUtils.shuffle(data);
-			TupleTwo<List<Observation>, List<Observation>> split_data = CollectionUtils.split(data, 0.8);
+			TupleTwo<List<Observation>, List<Observation>> split_data = CollectionUtils.split(data, 0.6);
 			trainingData = split_data._1();
 			testingData = split_data._2();
 			
@@ -579,24 +579,24 @@ public static class dke extends AbstractProblem {
 		NondominatedPopulation result = new Executor()
 				.withProblemClass(dke.class)
 				.withAlgorithm("DE")
-				.withMaxEvaluations(500)
+				.withMaxEvaluations(1000)
 				.run();
 		 
 		long endTime = System.nanoTime();
 		long timeElapsed = endTime - startTime;
 		System.out.println("Execution time in milliseconds : " + timeElapsed / 1000000);
 
-		System.out.format("Training		Test \n");
+		/*System.out.format("Training		Test \n");
 		
 		for (Solution solution : result) {
 			System.out.format("%.4f		%.4f \n",
 					-1 * solution.getObjective(0),
 					-1 * solution.getObjective(0));
-		}
+		}*/
 		
 
 
-			dke.finalValidation (dke.testingData, result.get(0));
+		dke.finalValidation (dke.testingData, result.get(0));
 	
 			
 			
