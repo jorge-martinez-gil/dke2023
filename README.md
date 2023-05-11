@@ -47,7 +47,6 @@ If you use this work, please cite:
   year={2023},
   publisher={Elsevier}
 }
-
 ```
 
 # License
