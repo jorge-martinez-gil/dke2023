@@ -39,13 +39,17 @@ If you use this work, please cite:
 
 ```
 @article{martinez2023neurofuzzy,
-  title={Neurofuzzy semantic similarity measurement},
-  author={Martinez-Gil, Jorge and Mokadem, Riad and K{\"u}ng, Josef and Hameurlain, Abdelkader},
-  journal={Data \& Knowledge Engineering},
-  volume={145},
-  pages={102155},
-  year={2023},
-  publisher={Elsevier}
+  author       = {Jorge Martinez-Gil and
+                  Riad Mokadem and
+                  Josef K{\"{u}}ng and
+                  Abdelkader Hameurlain},
+  title        = {Neurofuzzy semantic similarity measurement},
+  journal      = {Data Knowl. Eng.},
+  volume       = {145},
+  pages        = {102155},
+  year         = {2023},
+  url          = {https://doi.org/10.1016/j.datak.2023.102155},
+  doi          = {10.1016/J.DATAK.2023.102155}
 }
 ```
 
