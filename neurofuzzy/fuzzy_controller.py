@@ -71,6 +71,11 @@ def trapmf(x: np.ndarray | float, a: float, b: float, c: float, d: float) -> np.
 class FuzzyController:
     """Mamdani fuzzy controller with 40 bounded parameters."""
 
+    OUTPUT_BOUNDARY_SLICE = slice(0, 8)
+    INPUT_CENTERS_SLICE = slice(8, 20)
+    INPUT_WIDTHS_SLICE = slice(20, 32)
+    RULE_SCALES_SLICE = slice(32, 40)  # 8 learned scales; 9th rule uses neutral scale 1.0
+
     def __init__(self, params: np.ndarray):
         """Initialize fuzzy controller.
 
@@ -86,8 +91,8 @@ class FuzzyController:
         self._y_grid = np.linspace(0.0, 1.0, 201)
 
     def _input_memberships(self, x: np.ndarray) -> np.ndarray:
-        centers = self.params[8:20].reshape(4, 3)
-        widths = np.maximum(self.params[20:32].reshape(4, 3), 1e-3)
+        centers = self.params[self.INPUT_CENTERS_SLICE].reshape(4, 3)
+        widths = np.maximum(self.params[self.INPUT_WIDTHS_SLICE].reshape(4, 3), 1e-3)
         x_clip = np.clip(x, 0.0, 1.0)
 
         memberships = np.zeros((4, 3), dtype=float)
@@ -99,7 +104,7 @@ class FuzzyController:
         return memberships
 
     def _output_sets(self) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-        b = np.sort(self.params[0:8])
+        b = np.sort(self.params[self.OUTPUT_BOUNDARY_SLICE])
         low = trapmf(self._y_grid, 0.0, b[0], b[1], b[2])
         mid = trapmf(self._y_grid, b[1], b[2], b[3], b[4])
         high = trapmf(self._y_grid, b[4], b[5], b[6], 1.0)
@@ -129,8 +134,10 @@ class FuzzyController:
         m_a = memberships[top_inputs[0]]
         m_b = memberships[top_inputs[1]]
 
+        # 9 rules are evaluated; params expose 8 learnable scalars and keep
+        # the last rule at a neutral weight (1.0) for backward-compatible size 40.
         rule_scales = np.ones(9, dtype=float)
-        rule_scales[:8] = np.clip(self.params[32:40], 0.0, 1.0)
+        rule_scales[:8] = np.clip(self.params[self.RULE_SCALES_SLICE], 0.0, 1.0)
 
         consequent_map = np.array(
             [

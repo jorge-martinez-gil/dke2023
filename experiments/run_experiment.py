@@ -71,7 +71,7 @@ def _run_dataset(dataset: str, runs: int, output_dir: Path, maxiter: int, popsiz
     df.to_csv(output_file, index=False)
 
     summary = {
-        column: (float(df[column].mean()), float(df[column].std(ddof=0)))
+        column: (float(df[column].mean()), float(df[column].std(ddof=1 if len(df) > 1 else 0)))
         for column in [
             'pearson',
             'spearman',
