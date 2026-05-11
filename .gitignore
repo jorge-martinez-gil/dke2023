@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.env
+venv/
+.venv/
+dist/
+build/
+*.egg-info/
+results/
+.ipynb_checkpoints/
+*.npy
+.pytest_cache/
+fcl/temp
+fcl/tipper99.fcl
+fcl/result.fcl
+fcl/best.fcl

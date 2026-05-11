@@ -1,3 +1,4 @@
+// Legacy Java prototype retained for historical reference.
 
 package dke2023;
 

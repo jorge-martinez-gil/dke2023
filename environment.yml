@@ -1,0 +1,17 @@
+name: neurofuzzy
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy>=1.24
+  - scipy>=1.10
+  - pandas>=2.0
+  - scikit-learn>=1.3
+  - tqdm>=4.65
+  - jupyter
+  - matplotlib
+  - seaborn
+  - pip
+  - pip:
+    - neurofuzzy
