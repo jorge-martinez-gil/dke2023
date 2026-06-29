@@ -1,0 +1,7 @@
+# Exact dependency pins used to produce the committed benchmark artifacts.
+# Reproduce with:  pip install -r requirements-lock.txt && pip install -e .
+# Generated on Python 3.10.
+numpy==2.2.6
+scipy==1.15.3
+pandas==2.3.3
+matplotlib==3.10.9

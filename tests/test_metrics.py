@@ -33,9 +33,35 @@ def test_evaluate_all_keys() -> None:
     y_pred = np.array([0.1, 0.2, 0.3])
     result = evaluate_all(y_true, y_pred)
     assert set(result.keys()) == {
-        'pearson',
-        'spearman',
-        'cosine_similarity',
-        'mean_absolute_error',
-        'root_mean_squared_error',
+        "pearson",
+        "spearman",
+        "cosine_similarity",
+        "mean_absolute_error",
+        "root_mean_squared_error",
     }
+
+
+def test_shape_mismatch_raises():
+    import pytest
+
+    with pytest.raises(ValueError):
+        pearson(np.array([1.0, 2.0]), np.array([1.0, 2.0, 3.0]))
+
+
+def test_constant_input_returns_zero():
+    # Degenerate correlation is handled gracefully (returns 0.0, not NaN).
+    assert pearson(np.ones(5), np.arange(5.0)) == 0.0
+    assert spearman(np.ones(5), np.arange(5.0)) == 0.0
+
+
+def test_mae_and_rmse_known_values():
+    from neurofuzzy.metrics import mean_absolute_error, root_mean_squared_error
+
+    y_true = np.array([0.0, 0.0, 0.0])
+    y_pred = np.array([1.0, 1.0, 1.0])
+    assert np.isclose(mean_absolute_error(y_true, y_pred), 1.0)
+    assert np.isclose(root_mean_squared_error(y_true, y_pred), 1.0)
+
+
+def test_cosine_zero_vector_returns_zero():
+    assert cosine_similarity(np.zeros(3), np.array([1.0, 2.0, 3.0])) == 0.0

@@ -1,0 +1,13 @@
+dataset,metric,comparison,n_pairs,mean_diff,wilcoxon_stat,p_value
+geresid,pearson,neurofuzzy vs best-single-feature,10,-0.20782349479697512,8.0,0.048828125
+geresid,spearman,neurofuzzy vs best-single-feature,10,-0.1568820080338655,11.0,0.10546875
+geresid,pearson,neurofuzzy vs linear-regression,10,-0.22139679716289348,9.0,0.064453125
+geresid,spearman,neurofuzzy vs linear-regression,10,-0.06462857883917035,19.0,0.431640625
+geresid,pearson,neurofuzzy vs mean-of-features,10,-0.18265225947716526,14.0,0.193359375
+geresid,spearman,neurofuzzy vs mean-of-features,10,-0.1429736166360956,15.0,0.232421875
+mc,pearson,neurofuzzy vs best-single-feature,10,-0.08480554861948965,0.0,0.001953125
+mc,spearman,neurofuzzy vs best-single-feature,10,-0.07095190596843615,1.0,0.00390625
+mc,pearson,neurofuzzy vs linear-regression,10,-0.05579900475855885,12.0,0.130859375
+mc,spearman,neurofuzzy vs linear-regression,10,-0.020382302231289486,22.0,0.625
+mc,pearson,neurofuzzy vs mean-of-features,10,-0.08384589027663256,3.0,0.009765625
+mc,spearman,neurofuzzy vs mean-of-features,10,-0.07684036148542518,0.0,0.001953125

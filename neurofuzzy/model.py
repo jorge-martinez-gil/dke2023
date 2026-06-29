@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
 import numpy as np
@@ -10,6 +11,8 @@ from .data_loader import train_test_split
 from .fuzzy_controller import FuzzyController
 from .metrics import evaluate_all
 from .optimizer import optimize
+
+logger = logging.getLogger(__name__)
 
 
 class NeurofuzzyModel:
@@ -52,7 +55,7 @@ class NeurofuzzyModel:
         self.params_: np.ndarray | None = None
         self.controller_: FuzzyController | None = None
 
-    def fit(self, X: np.ndarray, y: np.ndarray) -> 'NeurofuzzyModel':
+    def fit(self, X: np.ndarray, y: np.ndarray) -> NeurofuzzyModel:
         """Fit the model by optimizing controller parameters.
 
         Parameters
@@ -70,9 +73,7 @@ class NeurofuzzyModel:
         X_arr = np.asarray(X, dtype=float)
         y_arr = np.asarray(y, dtype=float)
         if X_arr.ndim != 2 or X_arr.shape[1] != self.n_features:
-            raise ValueError(
-                f'Expected X shape (n_samples, {self.n_features}), got {X_arr.shape}'
-            )
+            raise ValueError(f"Expected X shape (n_samples, {self.n_features}), got {X_arr.shape}")
 
         X_train = X_arr
         y_train = y_arr
@@ -95,7 +96,7 @@ class NeurofuzzyModel:
         self.params_ = np.asarray(result.x, dtype=float)
         self.controller_ = FuzzyController(self.params_)
         if self.verbose:
-            print(f'Optimization finished: best objective = {result.fun:.6f}')
+            logger.info("Optimization finished: best objective = %.6f", result.fun)
         return self
 
     def predict(self, X: np.ndarray) -> np.ndarray:
@@ -112,7 +113,7 @@ class NeurofuzzyModel:
             Predicted similarity scores.
         """
         if self.controller_ is None:
-            raise RuntimeError('Model is not fitted. Call fit() or load() first.')
+            raise RuntimeError("Model is not fitted. Call fit() or load() first.")
         return self.controller_.predict(np.asarray(X, dtype=float))
 
     def evaluate(self, X: np.ndarray, y: np.ndarray) -> dict[str, float]:
@@ -142,11 +143,11 @@ class NeurofuzzyModel:
             Destination file path.
         """
         if self.params_ is None:
-            raise RuntimeError('Model has no learned parameters to save.')
+            raise RuntimeError("Model has no learned parameters to save.")
         np.save(path, self.params_)
 
     @classmethod
-    def load(cls, path: str | Path) -> 'NeurofuzzyModel':
+    def load(cls, path: str | Path) -> NeurofuzzyModel:
         """Load model parameters from ``.npy`` file.
 
         Parameters

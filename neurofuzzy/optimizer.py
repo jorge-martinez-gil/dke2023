@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Callable, Optional
+from typing import Callable
 
 import numpy as np
 from scipy.optimize import OptimizeResult, differential_evolution
@@ -18,7 +18,7 @@ def optimize(
     maxiter: int = 200,
     popsize: int = 15,
     seed: int = 42,
-    callback: Optional[Callable[..., bool]] = None,
+    callback: Callable[..., bool] | None = None,
 ) -> OptimizeResult:
     """Optimize fuzzy parameters with Differential Evolution.
 
@@ -62,5 +62,5 @@ def optimize(
         seed=seed,
         callback=callback,
         polish=True,
-        updating='deferred',
+        updating="deferred",
     )

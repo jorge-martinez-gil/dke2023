@@ -1,16 +1,34 @@
+# Byte-compiled / caches
 __pycache__/
 *.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Environments
 .env
 venv/
 .venv/
+
+# Build / packaging
 dist/
 build/
 *.egg-info/
-results/
-.ipynb_checkpoints/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Saved model parameters and local scratch results (top-level only)
 *.npy
-.pytest_cache/
+/results/
+
+# Generated FCL artifacts from the legacy Java prototype
 fcl/temp
 fcl/tipper99.fcl
 fcl/result.fcl
 fcl/best.fcl
+
+# NOTE: benchmarks/results and benchmarks/figures are intentionally tracked
+# (committed, regenerable artifacts). Do not add them here.

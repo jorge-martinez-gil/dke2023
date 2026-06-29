@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use this software or its benchmark, please cite the article below."
+title: "neurofuzzy: Reproducible Neurofuzzy Semantic Similarity Measurement"
+abstract: >-
+  A clean, reproducible Python implementation of a fuzzy-inference approach to
+  semantic similarity measurement, with a unified benchmark harness, reference
+  baselines, confidence intervals, significance testing, and publication-quality
+  reporting. Companion code for the Data & Knowledge Engineering (2023) article.
+type: software
+authors:
+  - family-names: "Martinez-Gil"
+    given-names: "Jorge"
+    orcid: "https://orcid.org/0000-0002-5730-7965"
+    affiliation: "Software Competence Center Hagenberg (SCCH), Austria"
+repository-code: "https://github.com/jorge-martinez-gil/dke2023"
+url: "https://github.com/jorge-martinez-gil/dke2023"
+license: MIT
+version: "1.1.0"
+date-released: "2026-06-29"
+keywords:
+  - semantic similarity
+  - fuzzy logic
+  - neuro-fuzzy
+  - differential evolution
+  - benchmark
+  - reproducible research
+preferred-citation:
+  type: article
+  title: "Neurofuzzy semantic similarity measurement"
+  authors:
+    - family-names: "Martinez-Gil"
+      given-names: "Jorge"
+      orcid: "https://orcid.org/0000-0002-5730-7965"
+    - family-names: "Mokadem"
+      given-names: "Riad"
+    - family-names: "Küng"
+      given-names: "Josef"
+    - family-names: "Hameurlain"
+      given-names: "Abdelkader"
+  journal: "Data & Knowledge Engineering"
+  volume: 145
+  start: 102155
+  year: 2023
+  doi: "10.1016/j.datak.2023.102155"
+  url: "https://doi.org/10.1016/j.datak.2023.102155"

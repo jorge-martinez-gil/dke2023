@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import warnings
+
 import numpy as np
 from scipy.stats import pearsonr, spearmanr
 
@@ -10,7 +12,7 @@ def _to_arrays(y_true: np.ndarray, y_pred: np.ndarray) -> tuple[np.ndarray, np.n
     a = np.asarray(y_true, dtype=float).ravel()
     b = np.asarray(y_pred, dtype=float).ravel()
     if a.shape != b.shape:
-        raise ValueError(f'Shape mismatch: y_true {a.shape} vs y_pred {b.shape}')
+        raise ValueError(f"Shape mismatch: y_true {a.shape} vs y_pred {b.shape}")
     return a, b
 
 
@@ -30,7 +32,9 @@ def pearson(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         Pearson correlation in ``[-1, 1]``.
     """
     y_t, y_p = _to_arrays(y_true, y_pred)
-    value = pearsonr(y_t, y_p).statistic
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        value = pearsonr(y_t, y_p).statistic
     return float(0.0 if np.isnan(value) else value)
 
 
@@ -50,7 +54,9 @@ def spearman(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         Spearman correlation in ``[-1, 1]``.
     """
     y_t, y_p = _to_arrays(y_true, y_pred)
-    value = spearmanr(y_t, y_p).statistic
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        value = spearmanr(y_t, y_p).statistic
     return float(0.0 if np.isnan(value) else value)
 
 
@@ -131,9 +137,9 @@ def evaluate_all(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:
         MAE, and RMSE.
     """
     return {
-        'pearson': pearson(y_true, y_pred),
-        'spearman': spearman(y_true, y_pred),
-        'cosine_similarity': cosine_similarity(y_true, y_pred),
-        'mean_absolute_error': mean_absolute_error(y_true, y_pred),
-        'root_mean_squared_error': root_mean_squared_error(y_true, y_pred),
+        "pearson": pearson(y_true, y_pred),
+        "spearman": spearman(y_true, y_pred),
+        "cosine_similarity": cosine_similarity(y_true, y_pred),
+        "mean_absolute_error": mean_absolute_error(y_true, y_pred),
+        "root_mean_squared_error": root_mean_squared_error(y_true, y_pred),
     }

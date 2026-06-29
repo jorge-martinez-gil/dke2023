@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional
 
 import numpy as np
 
@@ -32,22 +31,24 @@ def load_dataset(filepath: str | Path, n_features: int = 4) -> tuple[np.ndarray,
     """
     rows: list[list[float]] = []
     path = Path(filepath)
-    with path.open('r', encoding='utf-8') as handle:
+    with path.open("r", encoding="utf-8") as handle:
         for raw_line in handle:
             line = raw_line.strip()
             if not line:
                 continue
-            parts = [token.strip() for token in line.split(',') if token.strip()]
+            parts = [token.strip() for token in line.split(",") if token.strip()]
             if len(parts) < n_features + 1:
                 raise ValueError(
-                    f"Invalid row in {filepath!s}: expected at least {n_features + 1} columns, got {len(parts)}"
+                    f"Invalid row in {filepath!s}: expected at least "
+                    f"{n_features + 1} columns, got {len(parts)}"
                 )
             rows.append([float(value) for value in parts[: n_features + 1]])
 
     data = np.asarray(rows, dtype=float)
     if data.ndim != 2 or data.shape[1] != n_features + 1:
         raise ValueError(
-            f"Invalid dataset shape for {filepath!s}: expected (?, {n_features + 1}), got {data.shape}"
+            f"Invalid dataset shape for {filepath!s}: expected "
+            f"(?, {n_features + 1}), got {data.shape}"
         )
 
     y = data[:, 0]
@@ -59,7 +60,7 @@ def train_test_split(
     X: np.ndarray,
     y: np.ndarray,
     train_ratio: float = 0.6,
-    random_state: Optional[int] = None,
+    random_state: int | None = None,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Shuffle and split features/targets into train and test subsets.
 
@@ -85,9 +86,9 @@ def train_test_split(
         If shapes are inconsistent or ``train_ratio`` is invalid.
     """
     if X.shape[0] != y.shape[0]:
-        raise ValueError('X and y must contain the same number of samples')
+        raise ValueError("X and y must contain the same number of samples")
     if not 0.0 < train_ratio < 1.0:
-        raise ValueError('train_ratio must be in the open interval (0, 1)')
+        raise ValueError("train_ratio must be in the open interval (0, 1)")
 
     rng = np.random.default_rng(random_state)
     indices = np.arange(X.shape[0])

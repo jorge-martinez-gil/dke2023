@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question / discussion
+    url: https://github.com/jorge-martinez-gil/dke2023/discussions
+    about: Ask questions and discuss ideas with the community.
+  - name: Read the paper
+    url: https://doi.org/10.1016/j.datak.2023.102155
+    about: The Data & Knowledge Engineering (2023) article this code accompanies.

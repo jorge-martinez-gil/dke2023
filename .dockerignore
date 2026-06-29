@@ -1,0 +1,13 @@
+.git
+bin
+src
+fcl
+.settings
+.classpath
+.project
+**/__pycache__
+*.pyc
+results
+benchmarks/figures
+.venv
+venv
